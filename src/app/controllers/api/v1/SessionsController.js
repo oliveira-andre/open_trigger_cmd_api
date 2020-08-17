@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 import env from 'dotenv/config';
 import jwt from 'jsonwebtoken';
 
-import User from '../models/User';
+import User from '../../../models/User';
 
 class SessionsController {
   async create(req, res) {
