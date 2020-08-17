@@ -1,12 +1,14 @@
 import * as Yup from 'yup';
+import env from 'dotenv/config';
+import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
 
 class SessionsController {
-  async store(req, res) {
+  async create(req, res) {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
-      password: Yup.string().required(),
+      password: Yup.string().required().min(6),
     });
 
     if(!(await schema.isValid(req.body))) {
@@ -25,7 +27,10 @@ class SessionsController {
     }
 
     return res.json({
-      user: { email }
+      user: { email },
+      token: jwt.sign({ id }, env.SECRET_JWT, {
+        expiresIn: 60 * 60
+      })
     });
   }
 }
