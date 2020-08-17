@@ -11,7 +11,9 @@ class UsersController {
       return res.status(422).json({ error: validateUser.message });
     }
 
-    return res.json({ ok: true });
+    const { id, email } = await User.create(req.body);
+
+    return res.status(201).json({ id, email });
   }
 }
 
