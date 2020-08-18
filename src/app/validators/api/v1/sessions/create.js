@@ -1,6 +1,6 @@
 import  * as Yup from 'yup';
 
-import User from '../../../models/User';
+import User from '../../../../models/User';
 
 class createSessionValidator { 
   async validate(bodyParams) {
