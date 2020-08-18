@@ -1,19 +1,16 @@
 import env from 'dotenv/config';
 import jwt from 'jsonwebtoken';
 
-import User from '../../../models/User';
+import {
+  createSessionValidator,
+} from '../../../validators/api/v1/sessions';
 
 class SessionsController {
   async create(req, res) {
-    const { email, password } = req.body;
-    const user = User.findOne({ where: { email: email } });
+    const validateSession = createSessionValidator.validate(req.body);
 
-    if (!user) {
-      return res.status(422).json({ error: 'User not found' });
-    }
-
-    if (!(await user.checkPassword())) {
-      return res.status(422).json({ error: "Password doesn't match" });
+    if (!validateSession.valid) {
+      return res.status(422).json({ error: validateSession.message });
     }
 
     return res.json({
