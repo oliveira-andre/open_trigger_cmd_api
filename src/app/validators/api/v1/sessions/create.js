@@ -14,6 +14,11 @@ class createSessionValidator {
       return { valid: false, message: 'User not found' };
     }
 
+    const validPassword = await this.validPassword(userExist, bodyParams);
+    if(!validPassword) {
+      return { valid: false, message: 'Password does not match' }
+    }
+
     return { valid: true }
   }
 
@@ -31,6 +36,12 @@ class createSessionValidator {
     const user = User.findOne({ where: { email: email } });
 
     return user;
+  }
+
+  async validPassword(user, bodyParams) {
+    const { password } = bodyParams;
+
+    return await user.checkPassword(password);
   }
 }
 
