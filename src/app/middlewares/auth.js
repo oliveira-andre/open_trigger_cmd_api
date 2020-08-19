@@ -1,4 +1,9 @@
-export default async (req, res) => {
+export default async (req, res, next) => {
   const bearerToken = req.headers.authorization;
-  console.log(bearerToken);
+
+  if (!bearerToken) {
+    return res.status(422).json({ error: 'Token not provided' });
+  }
+
+  return next();
 }
