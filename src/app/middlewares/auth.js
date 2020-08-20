@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import 'dotenv/config';
 
 export default async (req, res, next) => {
-  const token = fetchAndValidateToken(req, res);
+  const token = await fetchAndValidateToken(req, res);
 
   try {
     const idObject = await promisify(jwt.verify)(token, process.env.secret_jwt);
@@ -20,6 +20,7 @@ const validatePayload = async (res, idObject) => {
   const schema = yup.object().shape({
     id: yup.number().positive().integer().required(),
   });
+
 
     if (!(await schema.isValid(idObject))) {
       return res.status(422).json({ error: 'Token invalid' });
