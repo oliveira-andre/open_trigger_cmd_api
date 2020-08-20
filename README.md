@@ -4,7 +4,7 @@
 ### Users
 
 <details>
-  - Create
+  <summary>Create</summary>
 
   ```shell
     curl -kv -H 'Content-Type: application/json' -d '{"email": "root@root.com", "password": "123456"}' -X 'POST' "http://localhost:3333/api/v1/users/" | jq
