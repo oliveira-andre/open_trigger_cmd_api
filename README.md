@@ -6,21 +6,20 @@
 <details>
   <summary>Create</summary>
 
-  curl:
-  ```shell
-    curl -kv -H 'Content-Type: application/json' -d '{"email": "root@root.com", "password": "123456"}' -X 'POST' "http://localhost:3333/api/v1/users/" | jq
-  ```
+  - curl:
+    ```shell
+      curl -kv -H 'Content-Type: application/json' -d '{"email": "root@root.com", "password": "123456"}' -X 'POST' "http://localhost:3333/api/v1/users/" | jq
+    ```
 
   - status_code: 201 Created
 
   - return:
-
-  ```json
-  {
-    "id": 11,
-    "email": "rootTeste@root.com"
-  }
-  ```
+    ```json
+    {
+      "id": 11,
+      "email": "rootTeste@root.com"
+    }
+    ```
 </details>
 
 
@@ -29,10 +28,10 @@
 <details>
   <summary>Create</summary>
 
-  curl:
-  ```shell
-    curl -kv -H 'Content-Type: application/json' -d '{"email": "root@root.com", "password": "123456"}' -X 'POST' "http://localhost:3333/api/v1/sessions/" | jq
-  ```
+  - curl:
+    ```shell
+      curl -kv -H 'Content-Type: application/json' -d '{"email": "root@root.com", "password": "123456"}' -X 'POST' "http://localhost:3333/api/v1/sessions/" | jq
+    ```
 
   - status_code: 201 Created
 
