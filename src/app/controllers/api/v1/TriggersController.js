@@ -8,7 +8,9 @@ class TriggersController {
   }
 
   async create(req, res) {
-    const validateTrigger = await createTriggerValidator.validate(req.body);
+    const validateTrigger = await createTriggerValidator.validate(
+      req.body, req.userId
+    );
 
     if (!validateTrigger.valid) {
       return res.status(422).json({ error: validateTrigger.message });
