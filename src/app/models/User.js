@@ -25,6 +25,10 @@ User.init({
   updatedAt: DataTypes.DATE,
 }, { sequelize });
 
+User.associate = (models) => {
+  User.hasOne(models.Trigger);
+}
+
 User.beforeCreate(async (user) => {
   if (user.password) {
     user.encrypted_password = await bcrypt.hash(user.password, 8);
