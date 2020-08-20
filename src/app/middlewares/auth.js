@@ -9,6 +9,7 @@ export default async (req, res, next) => {
   try {
     const idObject = await promisify(jwt.verify)(token, process.env.secret_jwt);
     await validatePayload(res, idObject);
+    req.userId = idObject.id;
 
     return next();
   } catch(e) {
