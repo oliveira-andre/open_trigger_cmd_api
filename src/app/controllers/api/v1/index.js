@@ -1,9 +1,9 @@
 import UsersController from './UsersController';
 import SessionsController from './SessionsController';
-import SkillsController from './SkillsController';
+import TriggersController from './TriggersController';
 
 export {
   SessionsController,
   UsersController,
-  SkillsController,
+  TriggersController,
 };
