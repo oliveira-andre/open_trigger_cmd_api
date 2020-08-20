@@ -3,8 +3,9 @@ import Sequelize from 'sequelize';
 import dbConfig from '../config/database';
 
 import User from '../models/User';
+import Trigger from '../models/Trigger';
 
-const models = [User];
+const models = [User, Trigger];
 
 class Database {
   constructor() {
