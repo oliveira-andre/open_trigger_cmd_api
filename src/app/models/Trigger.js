@@ -7,7 +7,8 @@ class Trigger extends Model {}
 Trigger.init({
   name: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    unique: true
   },
   command: {
     allowNull: false,
@@ -15,7 +16,8 @@ Trigger.init({
   },
   voice: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    unique: true
   },
 }, { sequelize });
 
