@@ -10,7 +10,8 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       command: {
         allowNull: false,
@@ -18,7 +19,8 @@ module.exports = {
       },
       voice: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       userId: {
         type: Sequelize.INTEGER,
