@@ -14,6 +14,8 @@ routes.post('/sessions', SessionsController.create);
 routes.post('/users', UsersController.create);
 
 routes.use(authMiddleware);
+
 routes.get('/triggers', TriggersController.index);
+routes.post('/triggers', TriggersController.create);
 
 export default routes;
