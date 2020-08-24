@@ -1,6 +1,7 @@
 import {
   createTriggerValidator,
 } from '../../../validators/api/v1/triggers';
+import Trigger from '../../../models/Trigger';
 
 class TriggersController {
   async index(req, res) {
@@ -16,7 +17,11 @@ class TriggersController {
       return res.status(422).json({ error: validateTrigger.message });
     }
 
-    res.json({ ok: true });
+    const { name, voice, command } = req.body;
+    const params = { name, voice, command, userId: req.userId };
+    const { id } = await Trigger.create(params);
+
+    res.status(201).json({ id, name, voice, command });
   }
 }
 
