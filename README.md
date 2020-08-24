@@ -17,7 +17,7 @@
     ```json
     {
       "id": 11,
-      "email": "rootTeste@root.com"
+      "email": "root@root.com"
     }
     ```
 </details>
