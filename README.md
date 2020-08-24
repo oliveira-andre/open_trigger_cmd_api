@@ -45,3 +45,26 @@
     }
     ```
 </details>
+
+### Triggers
+
+<details>
+  <summary>Create</summary>
+
+  - curl:
+    ```shell
+      curl -kv -H 'Content-Type: application/json' -H 'authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4MzAxMzEyLCJleHAiOjE1OTgzMDQ5MTJ9.Si37s1JBHJLB1kX2VGKZKRFA2X3jsLDXSIvqD9Is9xk' -d '{ "name": "testing", "voice": "testing", "command": "sudo apt-get upgrade" }' -X 'POST' "http://localhost:3333/api/v1/triggers" | jq
+    ```
+
+  - status_code: 201 Created
+
+  - return
+    ```json
+    {
+      "id": 3,
+      "name": "testing",
+      "voice": "testing",
+      "command": "sudo apt-get upgrade",
+    }
+    ```
+</details>
