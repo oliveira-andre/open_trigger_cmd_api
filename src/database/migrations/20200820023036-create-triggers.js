@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Triggers', {
@@ -11,7 +12,6 @@ module.exports = {
       name: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
       },
       command: {
         allowNull: false,
@@ -20,10 +20,10 @@ module.exports = {
       voice: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "Users",
           key: "id"
