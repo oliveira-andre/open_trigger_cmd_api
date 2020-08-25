@@ -8,16 +8,44 @@ Trigger.init({
   name: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true
+    validate: {
+      async isUniqueByUser() {
+        if (this.name && this.userId) {
+          const trigger = await Trigger.findOne({
+            where: { name: this.name, userId: this.userId }
+          });
+
+          if (trigger) {
+            throw new Error('Name needs to be unique');
+          }
+        }
+      }
+    },
   },
   command: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   voice: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true
+    validate: {
+      async isUniqueByUser() {
+        if (this.voice && this.userId) {
+          const trigger = await Trigger.findOne({
+            where: { voice: this.voice, userId: this.userId }
+          });
+
+          if (trigger) {
+            throw new Error('Voice needs to be unique');
+          }
+        }
+      }
+    },
+  },
+  userId: {
+    allowNull: false,
+    type: DataTypes.INTEGER,
   },
 }, { sequelize });
 
