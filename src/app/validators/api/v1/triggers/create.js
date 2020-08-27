@@ -1,5 +1,4 @@
 import * as Yup from 'yup';
-import jwt from 'jsonwebtoken';
 
 import Trigger from '../../../../models/Trigger';
 
