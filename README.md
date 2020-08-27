@@ -49,6 +49,32 @@
 ### Triggers
 
 <details>
+  <summary>Get</summary>
+
+  - curl:
+    ```shell
+      curl -kv -H 'Content-Type: application/json' -H 'authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NTY2MzE3LCJleHAiOjE1OTg1Njk5MTd9.liza4XVdSDHQ1c3cGw7qjk1FcsXz0wHKtjcH2kHv8A4' -X 'GET' "http://localhost:3333/api/v1/triggers/" | jq
+    ```
+
+    - status_code: 200 Ok
+
+    - return:
+      ```json
+      [
+        {
+          "id": 2,
+          "name": "testing",
+          "command": "sudo apt-get upgrade",
+          "voice": "testing",
+          "userId": 1,
+          "createdAt": "2020-08-25T01:22:41.823Z",
+          "updatedAt": "2020-08-25T01:22:41.823Z"
+      }
+    ]
+      ```
+</details>
+
+<details>
   <summary>Create</summary>
 
   - curl:
