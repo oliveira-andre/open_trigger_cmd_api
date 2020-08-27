@@ -5,7 +5,9 @@ import Trigger from '../../../models/Trigger';
 
 class TriggersController {
   async index(req, res) {
-    res.json({ ok: true });
+    const users = await Trigger.findAll({ where: { userId: req.userId } });
+
+    res.json(users);
   }
 
   async create(req, res) {
