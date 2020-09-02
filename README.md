@@ -94,3 +94,22 @@
     }
     ```
 </details>
+
+<details>
+  <summary>Update</summary>
+
+  - curl:
+    ```shell
+    curl -kv -H 'Content-Type: application/json' -H 'authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5MDg1OTY1LCJleHAiOjE1OTkwODk1NjV9.MjjfrROX4vVZoaeu2qhOGmivcRSdwt4n7QyuCnR3jfc' -d '{ "name": "testing", "command": "sudo apt-get upgrade", "voice": "testing" }' -X 'PUT' "http://localhost:3333/api/v1/triggers/2" | jq
+    ```
+
+    - status: 202 accepted
+
+    - return:
+      ```json
+      {  "name": "testing",
+        "command": "sudo apt-get upgrade",
+        "voice": "testing"
+      }
+      ```
+</details>
