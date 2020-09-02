@@ -36,7 +36,14 @@ class TriggersController {
       return res.status(422).json({ error: validateTrigger.message });
     }
 
-    res.json({ ok: true });
+    await Trigger.update(req.body, {
+      where: {
+        id: req.params.id,
+        userId: req.userId
+      }
+    });
+
+    res.status(202).json(req.body);
   }
 }
 
