@@ -29,7 +29,7 @@ class TriggersController {
 
   async update(req, res) {
     const validateTrigger = await updateTriggerValidator.validate(
-      req.body, req.userId
+      req.body, req.userId, req.params.id
     );
 
     if (!validateTrigger.valid) {
