@@ -1,6 +1,7 @@
 import {
   createTriggerValidator,
   updateTriggerValidator,
+  deleteTriggerValidator,
 } from '../../../validators/api/v1/triggers';
 import Trigger from '../../../models/Trigger';
 
@@ -47,6 +48,14 @@ class TriggersController {
   }
 
   async delete(req, res) {
+    const validateTrigger = await deleteTriggerValidator.validate(
+      req.userId, req.params.id
+    );
+
+    if(!validateTrigger.valid) {
+      return res.status(422).json({ error: validateTrigger.message });
+    }
+
     return res.json({ ok: true });
   }
 }
