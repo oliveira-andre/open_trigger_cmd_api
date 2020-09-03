@@ -56,7 +56,14 @@ class TriggersController {
       return res.status(422).json({ error: validateTrigger.message });
     }
 
-    return res.json({ ok: true });
+    await Trigger.destroy({
+      where: {
+        id: req.params.id,
+        userId: req.userId,
+      }
+    });
+
+    return res.status(204);
   }
 }
 
