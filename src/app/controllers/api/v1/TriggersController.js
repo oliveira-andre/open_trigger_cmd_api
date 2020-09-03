@@ -45,6 +45,10 @@ class TriggersController {
 
     res.status(202).json(req.body);
   }
+
+  async delete(req, res) {
+    return res.json({ ok: true });
+  }
 }
 
 export default new TriggersController();
