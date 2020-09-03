@@ -18,5 +18,6 @@ routes.use(authMiddleware);
 routes.get('/triggers', TriggersController.index);
 routes.post('/triggers', TriggersController.create);
 routes.put('/triggers/:id', TriggersController.update);
+routes.delete('/triggers/:id', TriggersController.delete);
 
 export default routes;
