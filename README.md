@@ -114,3 +114,14 @@
     }
     ```
 </details>
+
+<details>
+  <summary>Delete</summary>
+
+  - curl:
+    ```shell
+    curl -kv -H 'Content-Type: application/json' -H 'authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5MTY5Mzg1LCJleHAiOjE1OTkxNzI5ODV9.LMDdwsxBSKm6-WsVHhRtcQ11y8VjC5kXaop0lc0xKiM' -X 'DELETE' "http://localhost:3333/api/v1/triggers/4" | jq
+    ```
+
+  - status: 204 no content
+</details>
