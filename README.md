@@ -1,5 +1,12 @@
 # Open Trigger Cmd API
 
+## Summary
+
+This is a API to store users, sessions and triggers, to authenticate and get results on web, desktop and mobile apps
+i initialize this project inspiring myself on Trigger CMD, but on all development i code everything by my own
+if you like it, enjoy, fork, clone and fun yourself with this crazy code!
+
+## Requests
 
 ### Users
 
