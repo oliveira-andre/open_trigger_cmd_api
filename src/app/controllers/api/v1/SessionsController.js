@@ -24,6 +24,10 @@ class SessionsController {
       })
     });
   }
+
+  async delete(req, res) {
+    res.json({ok: true});
+  }
 }
 
 export default new SessionsController();
