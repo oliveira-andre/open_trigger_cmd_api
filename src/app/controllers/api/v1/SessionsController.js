@@ -17,7 +17,7 @@ class SessionsController {
     const { email } = req.body;
     const { id } = await User.findOne({ where: { email: email } });
 
-    return res.json({
+    return res.status(201).json({
       user: { email },
       token: jwt.sign({ id }, process.env.secret_jwt, {
         expiresIn: 60 * 60
