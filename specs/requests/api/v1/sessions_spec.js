@@ -15,11 +15,11 @@ describe('POST /sessions', () => {
         .send({ email: 'root@safe.com', password: 'safe123' });
     });
 
-    it('return error message', async () => {
+    it('return error message', () => {
       expect(response.body.error).toBe('User not found');
     });
 
-    it('return status code 422', async () => {
+    it('return status code 422', () => {
       expect(response.status).toBe(422);
     });
   });
@@ -43,11 +43,11 @@ describe('POST /sessions', () => {
           .send({ email: email, password: 'fake123' });
       });
 
-      it('return status code 422', async () => {
+      it('return status code 422', () => {
         expect(response.status).toBe(422);
       });
 
-      it('return error message', async () => {
+      it('return error message', () => {
         expect(response.body.error).toBe('Password does not match');
       });
     });
@@ -61,11 +61,11 @@ describe('POST /sessions', () => {
           .send({ email: email, password: password });
       });
 
-      it('return status code 201', async () => {
+      it('return status code 201', () => {
         expect(response.status).toBe(201);
       });
 
-      it('return valid jwt token', async () => {
+      it('return valid jwt token', () => {
         expect(response.body.token).not.toBeNull();
       });
     });
