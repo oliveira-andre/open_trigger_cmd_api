@@ -19,32 +19,55 @@ describe('POST /sessions', () => {
       expect(response.body.error).toBe('User not found');
     });
 
-    it('unprocessable entity status code', async () => {
+    it('return status code 422', async () => {
       expect(response.status).toBe(422);
     });
   });
 
-  describe('valid email and password', () => {
+  describe('user exist', () => {
     const email = 'root@root.com'
     const password = 'root123'
-    let response = '';
 
     beforeAll(async () => {
       await User.create({
         email: email, password: password
       });
-
-      response = await request(app)
-        .post(`${routePrefix}/sessions`)
-        .send({ email: email, password: password });
     });
 
-    it('return status code 201', async () => {
-      expect(response.status).toBe(201);
+    describe('invalid password', () => {
+      let response = '';
+
+      beforeAll(async () => {
+        response = await request(app)
+          .post(`${routePrefix}/sessions`)
+          .send({ email: email, password: 'fake123' });
+      });
+
+      it('return status code 422', async () => {
+        expect(response.status).toBe(422);
+      });
+
+      it('return error message', async () => {
+        expect(response.body.error).toBe('Password does not match');
+      });
     });
 
-    it('return valid jwt token', async () => {
-      expect(response.body.token).not.toBeNull();
+    describe('valid email and password', () => {
+      let response = '';
+
+      beforeAll(async () => {
+        response = await request(app)
+          .post(`${routePrefix}/sessions`)
+          .send({ email: email, password: password });
+      });
+
+      it('return status code 201', async () => {
+        expect(response.status).toBe(201);
+      });
+
+      it('return valid jwt token', async () => {
+        expect(response.body.token).not.toBeNull();
+      });
     });
   });
 });
