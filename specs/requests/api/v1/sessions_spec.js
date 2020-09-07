@@ -4,17 +4,32 @@ import app from '../../../../src/app.js';
 import User from '../../../../src/app/models/User';
 
 describe('POST /sessions', () => {
+  const routePrefix = '/api/v1';
+
   describe('valid email and password', () => {
-    it('should return jwt valid token', async () => {
-      const { email } = await User.create({
-        email: 'root@root.com', password: 'root123'
+    const email = 'root@root.com'
+    const password = 'root123'
+
+    beforeAll(async () => {
+      await User.create({
+        email: email, password: password
       });
+    });
 
+    it('return status code 201', async () => {
       const response = await request(app)
-        .post('/api/v1/sessions')
-        .send({ email, password: 'root123' });
+        .post(`${routePrefix}/sessions`)
+        .send({ email: email, password: password });
 
-      expect(response.status).toBe(200);
+      expect(response.status).toBe(201);
+    });
+
+    it('return valid jwt token', async () => {
+      const response = await request(app)
+        .post(`${routePrefix}/sessions`)
+        .send({ email: email, password: password });
+
+      expect(response.body.token).not.toBeNull();
     });
   });
 });
