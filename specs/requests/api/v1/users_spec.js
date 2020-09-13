@@ -44,4 +44,24 @@ describe('POST /users', () => {
       expect(response.status).toBe(422);
     });
   });
+
+  describe('valid email and password', () => {
+    let response = '';
+    const email = faker.internet.email();
+    const password  = faker.internet.password();
+
+    beforeAll(async () => {
+      response = await request(app)
+        .post(`${routePrefix}/users`)
+        .send({ email: email, password: password });
+    });
+
+    it('return user id', () => {
+      expect(response.body.id).not.toBeNull();
+    });
+
+    it('return status 201', () => {
+      expect(response.status).toBe(201);
+    });
+  });
 });
