@@ -44,7 +44,7 @@ class TriggersController {
       }
     });
 
-    res.status(202).json(req.body);
+    res.status(201).json(req.body);
   }
 
   async delete(req, res) {
