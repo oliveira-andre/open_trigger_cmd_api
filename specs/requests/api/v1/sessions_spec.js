@@ -1,4 +1,5 @@
 import request from 'supertest';
+import faker from 'faker';
 
 import app from '../../../../src/app.js';
 import User from '../../../../src/app/models/User';
@@ -25,8 +26,8 @@ describe('POST /sessions', () => {
   });
 
   describe('user exist', () => {
-    const email = 'root@root.com'
-    const password = 'root123'
+    const email = faker.internet.email();
+    const password = faker.internet.password();
 
     beforeAll(async () => {
       await User.create({
