@@ -132,3 +132,25 @@ if you like it, enjoy, fork, clone and fun yourself with this crazy code!
 
   - status: 204 no content
 </details>
+
+# Tests
+
+create a dotenv file with secret jwt env
+```
+secret_jwt=A5741CFBC477FAE31A8C1AB0EABDFBB03E13244915D3DB49DF0BA87E902F701E
+```
+
+first install dependencies
+```
+yarn install
+```
+
+create database for tests
+```
+NODE_ENV=test yarn sequelize db:create
+```
+
+run the tests
+```
+yarn test
+```
