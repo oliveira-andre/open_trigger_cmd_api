@@ -8,7 +8,7 @@ describe('POST /sessions', () => {
   const routePrefix = '/api/v1';
 
   describe('user not exists', () => {
-    let response = ''
+    let response = '';
 
     beforeAll(async () => {
       response = await request(app)
