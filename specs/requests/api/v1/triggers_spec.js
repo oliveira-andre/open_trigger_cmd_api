@@ -42,4 +42,46 @@ describe('GET /triggers', () => {
       expect(response.status).toBe(401);
     });
   });
+
+  describe('have valid token', () => {
+    let response = '';
+    const email = faker.internet.email();
+    const password = faker.internet.password();
+    const name = faker.lorem.slug();
+    const command = faker.lorem.sentence();
+    const voice = faker.lorem.words();
+
+    beforeAll(async () => {
+      const { id } = await User.create({
+        email: email, password: password
+      });
+
+      await Trigger.create({
+        name: name,
+        command: command,
+        voice: voice,
+        userId: id
+      });
+
+      const session = await request(app)
+        .post(`${routePrefix}/sessions`)
+        .send({ email: email, password: password });
+
+      response = await request(app)
+        .get(`${routePrefix}/triggers`)
+        .set('Authorization', `bearer ${session.body.token}`);
+    });
+
+    it('return status code 200', () => {
+      expect(response.status).toBe(200);
+    });
+
+    it('return array with one trigger', () => {
+      expect(response.body.length).toBe(1);
+    });
+
+    it('return the same name of trigger created', () => {
+      expect(response.body[0].name).toBe(name);
+    });
+  });
 });
